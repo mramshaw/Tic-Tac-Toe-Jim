@@ -1,0 +1,8 @@
+# Ignore the following files
+images/**
+node_modules/**
+.git/**
+docker-compose.yml
+Dockerfile
+README.md
+.gitignore
