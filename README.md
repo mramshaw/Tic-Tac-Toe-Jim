@@ -1,6 +1,6 @@
 # Tic-Tac-Toe-Jim
 
-A new wrinkle on traditional Tic-Tac-Toe - Hello, Joe!
+A new wrinkle on traditional Tic-Tac-Toe - Hello, Jim!
 
 ## Prerequisites
 
@@ -121,11 +121,14 @@ Happy hacking!
 root@e3ec474595ce:/#
 ```
 
+__npx__ is a package runner tool; of course, we could also use __npm__ (or __yarn__).
+
 Note that `create-react-app` uses __yarn__ (rather than __npm__) as its package manager.
 
 However, either <kbd>npm start</kbd> or <kbd>yarn start</kbd> will work at this point:
 
 ```bash
+root@e3ec474595ce:/# cd tic-tac-toe-joe
 root@e3ec474595ce:/tic-tac-toe-joe# npm start
 
 <...>
@@ -147,6 +150,8 @@ Note that the react app will now be available at: http://172.17.0.2:3000/
 It should look as follows:
 
 ![App started](images/App_started.png)
+
+The central icon is spinning slowly, so that's something.
 
 [As usual, __Ctrl-C__ and <kbd>exit</kbd> to terminate.]
 
