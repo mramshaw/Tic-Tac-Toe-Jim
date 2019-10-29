@@ -14,6 +14,7 @@ The contents are as follows:
     * [create-react-app](#create-react-app)
     * [Verify our created app](#verify-our-created-app)
 * [React tests](#react-tests)
+* [To Do](#to-do)
 * [Credits](#credits)
 
 ## Prerequisites
@@ -176,8 +177,6 @@ Our app (which we have not really detailed as yet) should look as follows:
 
 ![App started](images/App_started.png)
 
-The central icon is spinning slowly, so that's something.
-
 [As usual, __Ctrl-C__ and <kbd>exit</kbd> to terminate.]
 
 #### Running our app
@@ -193,11 +192,16 @@ At this point we can either <kbd>yarn test</kbd>, <kbd>yarn start</kbd>, or what
 
 ## React tests
 
-Lets run some tests with <kbd>yarn test</kbd>. The results should look like the following:
+Lets run some tests with <kbd>yarn test</kbd>. The results should look something like the following:
 
 ![yarn test](images/yarn_test.png)
 
 [As usual, __Ctrl-C__ to terminate.]
+
+## To Do
+
+- [ ] Complete tutorial
+- [ ] Add sounds
 
 ## Credits
 
@@ -207,6 +211,6 @@ This is based upon the following tutorial:
 
 As usual, I've tried to bundle in a few things to make it more interesting.
 
-For instance, instead of the the usual __3 x 3__ square, I thought a __4 x 4__ square might be fun.
+For instance, instead of the the usual __3 x 3__ square, I thought a __5 x 5__ square might be fun.
 
 Also, it seemed like a good exercise to use __Docker__ and __docker-compose__.
