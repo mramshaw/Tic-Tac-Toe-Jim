@@ -2,6 +2,20 @@
 
 A new wrinkle on traditional Tic-Tac-Toe - Hello, Jim!
 
+## Contents
+
+The contents are as follows:
+
+* [Prerequisites](#prerequisites)
+    * [Docker](#docker)
+    * [docker-compose](#docker-compose)
+    * [node.js](#nodejs)
+* [React](#react)
+    * [create-react-app](#create-react-app)
+    * [Verify our created app](#verify-our-created-app)
+* [React tests](#react-tests)
+* [Credits](#credits)
+
 ## Prerequisites
 
 Just for fun we will use [Docker](#docker) and [docker-compose](#docker-compose).
@@ -50,6 +64,10 @@ docker.io/library/node:lts
 $
 ```
 
+## React
+
+Pretty much everything in `react.js` starts with `create-react-app`, so that is where we will start.
+
 #### create-react-app
 
 Lets create a folder to store our react app:
@@ -59,11 +77,11 @@ Lets create a folder to store our react app:
 Now use the Docker version of __node.js__ to create our react app:
 
 ```bash
-$ docker run --rm -it -v $(pwd)/app:/tic-tac-toe-joe node:lts /bin/bash
-root@e3ec474595ce:/# npx create-react-app tic-tac-toe-joe
-npx: installed 91 in 11.749s
+$ docker run --rm -it -v $(pwd)/app:/tic-tac-toe-jim node:lts /bin/bash
+root@a15c667c3aa4:/# npx create-react-app tic-tac-toe-jim
+npx: installed 91 in 4.294s
 
-Creating a new React app in /tic-tac-toe-joe.
+Creating a new React app in /tic-tac-toe-jim.
 
 Installing packages. This might take a couple of minutes.
 Installing react, react-dom, and react-scripts...
@@ -76,27 +94,28 @@ info "fsevents@1.2.9" is an optional dependency and failed compatibility check. 
 info fsevents@2.0.7: The platform "linux" is incompatible with this module.
 info "fsevents@2.0.7" is an optional dependency and failed compatibility check. Excluding it from installation.
 [3/4] Linking dependencies...
-warning "react-scripts > @typescript-eslint/eslint-plugin@1.13.0" has incorrect peer dependency "eslint@^5.0.0".
-warning "react-scripts > @typescript-eslint/parser@1.13.0" has incorrect peer dependency "eslint@^5.0.0".
 warning "react-scripts > @typescript-eslint/eslint-plugin > tsutils@3.17.1" has unmet peer dependency "typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta".
 [4/4] Building fresh packages...
 success Saved lockfile.
+warning Your current version of Yarn is out of date. The latest version is "1.19.1", while you're on "1.17.3".
+info To upgrade, run the following command:
+$ curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 success Saved 7 new dependencies.
 info Direct dependencies
-├─ react-dom@16.9.0
-├─ react-scripts@3.1.1
-└─ react@16.9.0
+├─ react-dom@16.11.0
+├─ react-scripts@3.2.0
+└─ react@16.11.0
 info All dependencies
-├─ eslint-config-react-app@5.0.1
-├─ react-dev-utils@9.0.3
-├─ react-dom@16.9.0
-├─ react-error-overlay@6.0.1
-├─ react-scripts@3.1.1
-├─ react@16.9.0
-└─ scheduler@0.15.0
-Done in 15.08s.
+├─ react-app-polyfill@1.0.4
+├─ react-dev-utils@9.1.0
+├─ react-dom@16.11.0
+├─ react-error-overlay@6.0.3
+├─ react-scripts@3.2.0
+├─ react@16.11.0
+└─ scheduler@0.17.0
+Done in 16.54s.
 
-Success! Created tic-tac-toe-joe at /tic-tac-toe-joe
+Success! Created tic-tac-toe-jim at /tic-tac-toe-jim
 Inside that directory, you can run several commands:
 
   yarn start
@@ -114,28 +133,30 @@ Inside that directory, you can run several commands:
 
 We suggest that you begin by typing:
 
-  cd tic-tac-toe-joe
+  cd tic-tac-toe-jim
   yarn start
 
 Happy hacking!
-root@e3ec474595ce:/#
+root@a15c667c3aa4:/#
 ```
 
 __npx__ is a package runner tool; of course, we could also use __npm__ (or __yarn__).
 
 Note that `create-react-app` uses __yarn__ (rather than __npm__) as its package manager.
 
-However, either <kbd>npm start</kbd> or <kbd>yarn start</kbd> will work at this point:
+However, either <kbd>npm start</kbd> or <kbd>yarn start</kbd> will work at this point.
+
+But to follow convention, we will use __yarn__:
 
 ```bash
-root@e3ec474595ce:/# cd tic-tac-toe-joe
-root@e3ec474595ce:/tic-tac-toe-joe# npm start
+root@e3ec474595ce:/# cd tic-tac-toe-jim
+root@e3ec474595ce:/tic-tac-toe-jim# yarn start
 
 <...>
 
 Compiled successfully!
 
-You can now view tic-tac-toe-joe in the browser.
+You can now view tic-tac-toe-jim in the browser.
 
   Local:            http://localhost:3000/
   On Your Network:  http://172.17.0.2:3000/
@@ -145,15 +166,38 @@ To create a production build, use yarn build.
 
 ```
 
-Note that the react app will now be available at: http://172.17.0.2:3000/
+#### Verify our created app
 
-It should look as follows:
+Now lets verify that our app has been successfully created.
+
+Open a browser to either http://localhost:3000/ or http://172.17.0.2:3000/
+
+Our app (which we have not really detailed as yet) should look as follows:
 
 ![App started](images/App_started.png)
 
 The central icon is spinning slowly, so that's something.
 
 [As usual, __Ctrl-C__ and <kbd>exit</kbd> to terminate.]
+
+#### Running our app
+
+Now that we have verified our react build, we can start in our `app` folder:
+
+```bash
+$ docker run --rm -it -v $(pwd)/app:/tic-tac-toe-jim -w /tic-tac-toe-jim node:lts /bin/bash
+root@9c5820efcc80:/tic-tac-toe-jim#
+```
+
+At this point we can either <kbd>yarn test</kbd>, <kbd>yarn start</kbd>, or whatever.
+
+## React tests
+
+Lets run some tests with <kbd>yarn test</kbd>. The results should look like the following:
+
+![yarn test](images/yarn_test.png)
+
+[As usual, __Ctrl-C__ to terminate.]
 
 ## Credits
 
