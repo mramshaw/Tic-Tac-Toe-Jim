@@ -13,7 +13,9 @@ The contents are as follows:
 * [React](#react)
     * [create-react-app](#create-react-app)
     * [Verify our created app](#verify-our-created-app)
+    * [Running our created app](#running-our-created-app)
 * [React tests](#react-tests)
+* [Running our app](#running-our-app)
 * [To Do](#to-do)
 * [Credits](#credits)
 
@@ -179,7 +181,7 @@ Our app (which we have not really detailed as yet) should look as follows:
 
 [As usual, __Ctrl-C__ and <kbd>exit</kbd> to terminate.]
 
-#### Running our app
+#### Running our created app
 
 Now that we have verified our react build, we can start in our `app` folder:
 
@@ -196,11 +198,36 @@ Lets run some tests with <kbd>yarn test</kbd>. The results should look something
 
 ![yarn test](images/yarn_test.png)
 
-[As usual, __Ctrl-C__ to terminate.]
+[As usual, __Ctrl-C__ and <kbd>exit</kbd> to terminate.]
+
+## Running our app
+
+Okay, after hacking on some code we can run our app:
+
+```bash
+$ docker run --rm -it -v $(pwd)/app:/tic-tac-toe-jim -w /tic-tac-toe-jim node:lts /bin/bash
+root@9c5820efcc80:/tic-tac-toe-jim#
+```
+
+And <kbd>yarn start</kbd> again to run.
+
+And lets open a browser to: http://172.17.0.2:3000/
+
+And a quick smoke test:
+
+![Smoke test](images/Smoke_test.png)
+
+Yep, everything seems to work!
+
+[At this point it seems all I've done is to recreate a game I vaguely remember as __Four in a Row__,
+ however this was meant to be an exercise for learning React rather than to create a great new game.]
 
 ## To Do
 
 - [ ] Complete tutorial
+- [ ] Highlight winning row
+- [ ] Complete tests for winning criteria
+- [ ] Make it pretty!
 - [ ] Add sounds
 
 ## Credits
